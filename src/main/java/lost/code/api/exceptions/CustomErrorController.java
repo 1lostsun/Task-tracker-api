@@ -3,6 +3,7 @@ package lost.code.api.exceptions;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.web.error.ErrorAttributeOptions;
 import org.springframework.boot.web.servlet.error.ErrorAttributes;
+import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,7 +13,7 @@ import java.util.Map;
 
 @RequiredArgsConstructor
 @Controller
-public class CustomErrorController {
+public class CustomErrorController implements ErrorController {
 
 	private static final String path = "/error";
 
@@ -27,10 +28,10 @@ public class CustomErrorController {
 		return ResponseEntity
 				.status((Integer) attributes.get("status"))
 				.body(ErrorDto
-					.builder()
-					.errorMessage((String) attributes.get("error"))
-					.errorDescription((String) attributes.get("message"))
-					.build()
+						.builder()
+						.errorMessage((String) attributes.get("error"))
+						.errorDescription((String) attributes.get("message"))
+						.build()
 				);
 	}
 }

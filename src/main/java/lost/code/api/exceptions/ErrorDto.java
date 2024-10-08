@@ -1,20 +1,23 @@
 package lost.code.api.exceptions;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.FieldDefaults;
 
 @Data
 @Builder
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class ErrorDto {
-	
-	private String errorMessage;
+
+	String errorMessage;
 
 	@JsonProperty("error_description")
-	private String errorDescription;
+	String errorDescription;
 
 }
